@@ -5,7 +5,7 @@ import numpy as np
 from pathlib import Path
 from torch.utils.data import DataLoader
 
-# Ensure Python can find our local modules
+# Ensure Python can find local modules
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from data.datasets.crossview_dataset import CrossViewDataset

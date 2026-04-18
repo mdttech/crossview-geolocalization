@@ -26,7 +26,7 @@ class AblationConfig:
     aug_strategy: str = "asymmetric"
     seed: int = 42
     epochs: int = 30
-    batch_size: int = 32 # Set to 32 to ensure ViT-B fits in 12GB VRAM
+    batch_size: int = 32 # Set to 32 to ensure ViT-B fits in Low VRAM
     img_size: int = 224
     lr_backbone: float = 5e-5
     lr_head: float = 5e-4
@@ -107,7 +107,7 @@ def build_model(cfg: AblationConfig, device):
 
     model = CrossViewModel(u_enc, s_enc).to(device)
 
-    # --- THE FIX: Split Learning Rates for Ablation ---
+    # --- Split Learning Rates for Ablation ---
     backbone_params = []
     head_params = []
     for name, param in model.named_parameters():
@@ -237,7 +237,7 @@ def execute_tournament(device):
     Path("results").mkdir(exist_ok=True)
     results = []
     
-    # --- THE MISSING RESUME LOGIC ---
+    # --- RESUME LOGIC ---
     completed_runs = {}
     if Path(RESULTS_CSV).exists():
         df_existing = pd.read_csv(RESULTS_CSV)

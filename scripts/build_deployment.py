@@ -26,12 +26,12 @@ class SatelliteGalleryDataset(Dataset):
     def __getitem__(self, idx):
         img_path = self.images[idx]
         img = Image.open(img_path).convert('RGB')
-        # Extract location ID from filename (assuming format: locID_...)
+        # Extract location ID from filename (format: locID_...)
         loc_id = img_path.parent.name 
         return self.transform(img), loc_id, str(img_path)
 
 def build_deployment():
-    print("=== Phase 4: Deployment Prep ===")
+    print("=== Deployment Prep ===")
     project_root = Path(__file__).parent.parent
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     
@@ -44,7 +44,7 @@ def build_deployment():
     model.to(device)
     model.eval()
     
-    # 2. Build FAISS Index (Phase 4.1)
+    # 2. Build FAISS Index
     print("\n2. Extracting Satellite Gallery for FAISS...")
     sat_dir = project_root / "data" / "datasets" / "University-Release" / "train" / "satellite" # Using test set for final index
     gallery_dataset = SatelliteGalleryDataset(sat_dir, sat_transform(224))
@@ -72,7 +72,7 @@ def build_deployment():
     np.save(project_root / "models" / "faiss_labels.npy", np.array(all_labels))
     print(f"   -> FAISS Index saved to {faiss_path}!")
 
-    # 3. Model INT8 Quantization (Phase 4.2)
+    # 3. Model INT8 Quantization 
     print("\n3. Quantizing UAV Encoder to INT8...")
     model.to('cpu') # Quantization is done on CPU
     

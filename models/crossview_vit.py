@@ -11,7 +11,7 @@ class ViTEncoder(nn.Module):
         # 1. Initialize standard ViT
         self.backbone = timm.create_model(model_name, pretrained=True, num_classes=0)
         
-        # 2. Improvement 2: Inject custom MAE weights if provided
+        # 2. Improvement: Inject custom MAE weights if provided
         if mae_weight_path and Path(mae_weight_path).exists():
             print(f"[*] Loading Satellite MAE Pretrained Weights from {mae_weight_path}...")
             # Strict=False allows us to load the encoder weights smoothly

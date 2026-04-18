@@ -14,7 +14,7 @@ from data.transforms import uav_transform, sat_transform
 from evaluation.metrics import recall_at_k, mean_average_precision
 
 def run_final_evaluation():
-    print("=== Phase 5: Final Evaluation ===")
+    print("=== Final Evaluation ===")
     project_root = Path(__file__).parent.parent
     device = torch.device("cpu") # Forcing CPU to test the INT8 deployment model
     
@@ -70,7 +70,7 @@ def run_final_evaluation():
     print(f"Recall@10: {recalls[10]:.2f}%")
     print(f"mAP:       {map_score:.2f}%")
     
-    # Note: If your Recall@1 is within ~2% of your 89% FP32 score, quantization was a success!
+    # If Recall@1 is within ~2% of 89% FP32 score, quantization was a success!
 
 if __name__ == "__main__":
     run_final_evaluation()

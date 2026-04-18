@@ -43,7 +43,7 @@ def adjust_freezing_phase(model, epoch):
         for enc in [model.uav_enc, model.sat_enc]:
             set_module_grad(enc.backbone, True)
 
-# --- THE FIX: True Location ID Evaluation ---
+# --- True Location ID Evaluation ---
 def evaluate_recall(model, val_loader, device, k=1):
     model.eval()
     uav_embs, sat_embs, all_labels = [], [], []
@@ -99,7 +99,7 @@ def train_model():
     train_dataset = CrossViewDataset(drone_dir, sat_dir, gps_csv_file, uav_tf=uav_transform(img_size), sat_tf=sat_transform(img_size), valid_locs=train_locs)
     val_dataset = CrossViewDataset(drone_dir, sat_dir, gps_csv_file, uav_tf=uav_transform(img_size), sat_tf=sat_transform(img_size), valid_locs=val_locs)
 
-    # --- THE FIX: No Accumulation Steps ---
+    # --- No Accumulation Steps ---
     batch_size = config['training']['batch_size']
     train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=4, pin_memory=True, drop_last=True)
     val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False, num_workers=4, pin_memory=True)
@@ -108,7 +108,7 @@ def train_model():
     model = CrossViewViTModel(embed_dim=config['model']['embed_dim'], mae_weight_path=str(mae_path)).to(device)
     criterion = InfoNCELoss(temperature=config['loss']['temperature']).to(device)
     
-    # --- THE FIX: Proper Optimizer Split ---
+    # --- Proper Optimizer Split ---
     backbone_params = []
     head_params = []
     for name, param in model.named_parameters():
@@ -131,7 +131,7 @@ def train_model():
     epochs_without_improvement = 0
     start_epoch = 1
 
-    # --- THE FIX: Auto-Resume Logic ---
+    # --- Auto-Resume Logic ---
     resume_path = save_dir / "best_vit_mae.pth"
     if resume_path.exists():
         print(f"[*] Found existing checkpoint! Resuming from: {resume_path.name}")

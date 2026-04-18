@@ -53,7 +53,7 @@ def evaluate_recall(model, val_loader, device, k=1):
     uav_embs, sat_embs, all_labels = [], [], []
     
     with torch.no_grad():
-        # Notice we are now capturing 'loc_id'
+        # capturing 'loc_id'
         for uav, sat, loc_id, _, _ in val_loader:
             u, s = model(uav.to(device), sat.to(device))
             uav_embs.append(u.cpu())
@@ -67,7 +67,7 @@ def evaluate_recall(model, val_loader, device, k=1):
     sim = uav_embs @ sat_embs.T
     top_k_indices = sim.topk(k, dim=1)[1]
     
-    # --- THE FIX: Compare actual building IDs ---
+    # --- Compare actual building IDs ---
     correct = 0
     for i, row in enumerate(top_k_indices):
         true_label = all_labels[i]
@@ -114,7 +114,7 @@ def train_model():
     model = CrossViewModel(embed_dim=config['model']['embed_dim']).to(device)
     criterion = InfoNCELoss(temperature=config['loss']['temperature']).to(device)
     
-    # --- PROPER OPTIMIZER SPLIT ---
+    # --- OPTIMIZER SPLIT ---
     backbone_params = []
     head_params = []
     for name, param in model.named_parameters():

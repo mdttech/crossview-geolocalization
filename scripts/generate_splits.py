@@ -2,7 +2,7 @@ import os
 import numpy as np
 from pathlib import Path
 
-# Paths based on your structure
+# Paths 
 project_root = Path(__file__).parent.parent
 drone_dir = project_root / "data" / "datasets" / "University-Release" / "train" / "drone"
 splits_dir = project_root / "data" / "splits"

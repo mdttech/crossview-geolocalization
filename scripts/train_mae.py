@@ -64,7 +64,7 @@ def train_mae():
     criterion = nn.MSELoss() # Mean Squared Error for pixel reconstruction
     scaler = torch.amp.GradScaler('cuda')
     
-    epochs = 50 # As defined in Improvement 2
+    epochs = 50 # As defined
     for epoch in range(1, epochs + 1):
         model.train()
         train_loss = 0.0
