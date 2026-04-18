@@ -1,0 +1,28 @@
+model:
+  backbone: vit_base_patch16_224
+  embed_dim: 512
+  pretrained: true 
+  mae_checkpoint: "models/saved_weights/mae_satellite_epoch50.pth"
+
+optimizer:
+  name: adamw
+  lr_backbone: 5.0e-5  
+  lr_head: 5.0e-4
+  weight_decay: 0.05
+
+scheduler:
+  name: cosine
+  warmup_epochs: 5
+  T_max: 50
+
+training:
+  epochs: 50
+  batch_size: 32  # Keep at 32 for ViT-B to fit in 12GB VRAM safely
+  img_size: 224
+  patience: 10
+  seed: 42
+
+loss:
+  name: infonce
+  temperature: 0.07
+  cls_weight: 0.5

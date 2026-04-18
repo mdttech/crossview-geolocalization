@@ -1,0 +1,10 @@
+backbone,loss,pooling,embed_dim,aug_strategy,seed,best_r1,minutes,round
+resnet50,infonce,gem_p3,512,asymmetric,42,89.07407407407408,107.3,ROUND 1: Backbones
+vit_small_patch16_224,infonce,gem_p3,512,asymmetric,42,83.73015873015873,107.5,ROUND 1: Backbones
+vit_base_patch16_224,infonce,gem_p3,512,asymmetric,42,80.50264550264549,113.6,ROUND 1: Backbones
+resnet50,infonce,gem_p3,512,asymmetric,42,88.01587301587301,108.7,ROUND 2: Loss
+resnet50,triplet,gem_p3,512,asymmetric,42,86.69312169312168,107.8,ROUND 2: Loss
+resnet50,infonce,gem_tuned,512,asymmetric,42,86.87830687830687,107.7,ROUND 3: Pooling & Dims
+resnet50,infonce,gem_p3,1024,asymmetric,42,88.88888888888889,107.9,ROUND 3: Pooling & Dims
+resnet50,infonce,gem_p3,256,asymmetric,42,87.77777777777777,108.1,ROUND 3: Pooling & Dims
+clip_vit_b16,infonce,gem_p3,1024,asymmetric,42,9.947089947089948,118.1,ROUND 5: CLIP Baseline

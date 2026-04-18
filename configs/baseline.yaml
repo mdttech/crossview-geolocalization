@@ -1,0 +1,26 @@
+model:
+  backbone: resnet50
+  embed_dim: 512
+  pretrained: true
+
+optimizer:
+  name: adamw
+  lr_backbone: 5.0e-5
+  lr_head: 5.0e-4
+  weight_decay: 0.01
+
+scheduler:
+  name: cosine
+  warmup_epochs: 5
+  T_max: 50
+
+training:
+  epochs: 50
+  batch_size: 32
+  img_size: 224
+  patience: 10
+  seed: 42
+
+loss:
+  name: infonce
+  temperature: 0.07

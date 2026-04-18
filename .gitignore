@@ -1,0 +1,14 @@
+# Datasets
+data/datasets/
+
+# Model Weights and Indexes
+models/saved_weights/
+models/*.pth
+models/*.pt
+models/*.faiss
+models/*.npy
+
+# Python Cache
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
