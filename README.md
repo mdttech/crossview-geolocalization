@@ -10,9 +10,20 @@
 ## 📖 Overview
 Visual geo-localization enables autonomous Unmanned Aerial Vehicle (UAV) navigation in environments where GPS signals are jammed, spoofed, or unavailable. This project solves the geometric challenge of matching real-time, low-altitude, 45-degree angled drone imagery against a massive gallery of 90-degree top-down satellite tiles.
 
-While recent trends favor Vision Transformers (ViTs) and semantic models like CLIP, this project demonstrates that a meticulously optimized Convolutional Neural Network (CNN) remains mathematically superior for strict spatial and geometric matching.
+While recent trends favor Vision Transformers (ViTs) and semantic models like CLIP, this project demonstrates that a meticulously optimized Convolutional Neural Network (CNN) remains mathematically superior for strict spatial and geometric matching.  
+<br>
+
+<img width="1455" height="161" alt="Untitled Diagram drawio" src="https://github.com/user-attachments/assets/a9953517-6b99-4593-af2e-73e6729305e5" />
+
+<br>
 
 Furthermore, this repository bridges the gap between academic theory and edge hardware, featuring a fully quantized INT8 deployment pipeline and a sub-2ms FAISS vector database.
+
+<br>
+
+<img width="680" height="79" alt="Untitled Diagram drawio (1)" src="https://github.com/user-attachments/assets/7b1a4e49-13f6-42eb-8f2c-a139875b9f28" />
+
+<br>
 
 ---
 
